@@ -1,0 +1,44 @@
+# comandos executaveis
+version: "3.7"
+services:
+  composer:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    volumes:
+    - .:/application
+    - ~/.ssh:/root/.ssh #instalar php e composer na máquina local para não precisar colocar token aqui e enviar para dentro do container.
+    - composer_cache:/root/.composer/cache
+    entrypoint: composer
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    volumes:
+    - .:/application
+    entrypoint: php
+    environment:
+    - DOCKER_ENV:dev-local
+
+  yarn:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    volumes:
+    - .:/application
+    - yarn_cache:/root/.cache/yarn/v1
+    entrypoint: yarn
+
+  npm:
+    build:
+      context: .
+      dockerfile: docke/node/Dockerfile
+    volumes:
+    - .:/application
+    - yarn_cache:/root/.cache/yarn/v1
+    entrypoint: npm
+
+volumes:
+  composer_cache: ~
+  yarn_cache: ~

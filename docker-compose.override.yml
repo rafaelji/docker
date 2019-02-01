@@ -1,0 +1,29 @@
+#coisas para customizar de maquina para maquina
+version: "3.7"
+services:
+  php-fpm:
+    volumes:
+    - .:/application
+    environment:
+    - DOCKER_ENV:dev-local
+    depends_on:
+    - mysql
+
+  nginx:
+    volumes:
+    - .:/application
+    environment:
+    - NGINX_HOST=projeto.localhost
+    - PHP_FPM_HOST=php-fpm
+    ports:
+    - "8100:80"
+
+  mysql:
+    image: mysql:5.7
+    environment:
+    - MYSQL_DATABASE=api
+    - MYSQL_USER=developer
+    - MYSQL_PASSWORD=developer
+    - MYSQL_ROOT_PASSWORD=developer
+    ports:
+      - "33060:3306"

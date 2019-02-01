@@ -1,0 +1,18 @@
+# Serviços que devem ser executados automaticamente por padrao,
+# oq precisa para aplicacao estar rodando,
+# Disponibilizar para usuario
+# por exemplo: nginx php-fpm mysql
+
+version: "3.7"
+services:
+  php-fpm:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    depends_on:
+    - php-fpm
