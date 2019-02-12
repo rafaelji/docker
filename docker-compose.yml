@@ -3,7 +3,7 @@
 # Disponibilizar para usuario
 # por exemplo: nginx php-fpm mysql
 
-version: "3.7"
+version: "3.3"
 services:
   php-fpm:
     build:

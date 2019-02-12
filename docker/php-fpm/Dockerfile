@@ -17,7 +17,7 @@ RUN apk add --no-cache --virtual .persistent-deps \
         pdo_mysql \
         zip \
     && pecl install \
-        apcu-${APCU_VERSION} \
+        apcu \
         xdebug-${XDEBUG_VERSION} \
     && docker-php-ext-enable \
         apcu \
