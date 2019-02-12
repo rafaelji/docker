@@ -1,5 +1,5 @@
 # comandos executaveis
-version: "3.7"
+version: "3.3"
 services:
   composer:
     build:
@@ -33,7 +33,7 @@ services:
   npm:
     build:
       context: .
-      dockerfile: docke/node/Dockerfile
+      dockerfile: docker/node/Dockerfile
     volumes:
     - .:/application
     - yarn_cache:/root/.cache/yarn/v1
